@@ -142,10 +142,15 @@ See `server/.env.example` for the full list. Copy it to `server/.env` and fill i
 - Delivery charge breakdown (base + weight + distance, shown live and on the invoice)
 
 **Random Forest Delivery-Time Prediction (the one genuine ML module)**
-- Random Forest Regressor predicting delivery time in hours
-- Features: distance (Haversine), weight, delivery type (Air/Vehicle), priority (Standard/Express)
-- Trained on real delivered-parcel history; evaluated with k-fold cross-validation (MAE, RMSE, R² — never fabricated; R² is omitted rather than guessed when mathematically undefined)
-- Falls back to a clearly-labeled rule-based estimate until enough historical data exists (15+ delivered parcels)
+-Implements a Random Forest regression component designed to estimate parcel delivery time.
+
+-Uses features such as distance, parcel weight, delivery type, and express priority.
+
+-The model requires sufficient historical delivery data before training and evaluation.
+
+-Until the model is trained and evaluated, prediction accuracy has not been established.
+
+-A rule-based estimate is used as a fallback when the trained model is unavailable.
 
 See `AI_ARCHITECTURE.md` for full technical detail on the ML pipeline.
 
